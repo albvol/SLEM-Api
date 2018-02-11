@@ -1,0 +1,66 @@
+
+# Turn rewrite engine on
+Options +FollowSymlinks
+RewriteEngine on
+
+# map neat URL to internal URL
+RewriteRule ^warehouse/list/$   /controllers/warehouse.php?view=all [nc,qsa]
+RewriteRule ^warehouse/([0-9-a-z-A-Z]+)/$   /controllers/warehouse.php?view=single&id=$1 [nc,qsa]
+RewriteRule ^warehouse/$   /controllers/warehouse.php?view=new [nc,qsa]
+
+
+
+RewriteRule ^([0-9-a-z-A-Z]+)/location/list/$   /controllers/location.php?view=all&warehouseID=$1 [nc,qsa]
+RewriteRule ^([0-9-a-z-A-Z]+)/location/([0-9-a-z-A-Z]+)/$   /controllers/location.php?view=single&warehouseID=$1&locationID=$2 [nc,qsa]
+RewriteRule ^([0-9-a-z-A-Z]+)/location/$   /controllers/location.php?view=new&warehouseID=$1 [nc,qsa]
+
+
+
+RewriteRule ^catalog/list/$   /controllers/catalog.php?view=all [nc,qsa]
+RewriteRule ^catalog/material/$   /controllers/catalog.php?view=new&type=material [nc,qsa]
+RewriteRule ^catalog/equipment/$   /controllers/catalog.php?view=new&type=equipment [nc,qsa]
+RewriteRule ^catalog/([0-9-a-z-A-Z]+)/$   /controllers/catalog.php?view=single&productID=$1 [nc,qsa]
+
+
+
+RewriteRule ^([0-9-a-z-A-Z]+)/employee/list/$   /controllers/employee.php?view=all&warehouseID=$1 [nc,qsa]
+RewriteRule ^([0-9-a-z-A-Z]+)/employee/([0-9-a-z-A-Z]+)/$   /controllers/employee.php?view=single&warehouseID=$1&employeeID=$2 [nc,qsa]
+RewriteRule ^employee/$   /controllers/employee.php?view=new [nc,qsa]
+RewriteRule ^auth/$   /controllers/employee.php?view=update [nc,qsa]
+
+
+RewriteRule ^([0-9-a-z-A-Z]+)/inbound/list/$   /controllers/orders.php?view=all&warehouseID=$1&type=inbound [nc,qsa]
+RewriteRule ^([0-9-a-z-A-Z]+)/outbound/list/$   /controllers/orders.php?view=all&warehouseID=$1&type=outbound [nc,qsa]
+RewriteRule ^([0-9-a-z-A-Z]+)/inbound/([0-9-a-z-A-Z]+)/$   /controllers/orders.php?view=single&warehouseID=$1&orderID=$2 [nc,qsa]
+RewriteRule ^([0-9-a-z-A-Z]+)/outbound/([0-9-a-z-A-Z]+)/$   /controllers/orders.php?view=single&warehouseID=$1&orderID=$2 [nc,qsa]
+RewriteRule ^([0-9-a-z-A-Z]+)/outbound/$   /controllers/orders.php?view=new&warehouseID=$1 [nc,qsa]
+
+
+
+RewriteRule ^([0-9-a-z-A-Z]+)/equipment_material/list/$   /controllers/equipment_material.php?view=all&warehouseID=$1 [nc,qsa]
+RewriteRule ^([0-9-a-z-A-Z]+)/equipment_material/([0-9-a-z-A-Z]+)/$   /controllers/equipment_material.php?view=single&warehouseID=$1&serialID=$2 [nc,qsa]
+RewriteRule ^([0-9-a-z-A-Z]+)/equipment_material/([0-9-a-z-A-Z]+)/list/$   /controllers/equipment_material.php?view=serialInLocation&warehouseID=$1&locationID=$2 [nc,qsa]
+RewriteRule ^([0-9-a-z-A-Z]+)/equipment_material/$   /controllers/equipment_material.php?view=new&warehouseID=$1 [nc,qsa]
+
+
+
+RewriteRule ^([0-9-a-z-A-Z]+)/inbound/([0-9-a-z-A-Z]+)/batch/list/$   /controllers/batch.php?view=all&warehouseID=$1&orderID=$2&type=inbound [nc,qsa]
+RewriteRule ^([0-9-a-z-A-Z]+)/outbound/([0-9-a-z-A-Z]+)/batch/list/$   /controllers/batch.php?view=all&warehouseID=$1&orderID=$2&type=outbound [nc,qsa]
+RewriteRule ^([0-9-a-z-A-Z]+)/inbound/([0-9-a-z-A-Z]+)/batch/([0-9-a-z-A-Z]+)/$   /controllers/batch.php?view=single&warehouseID=$1&orderID=$2&batchID=$3&type=inbound [nc,qsa]
+RewriteRule ^([0-9-a-z-A-Z]+)/outbound/([0-9-a-z-A-Z]+)/batch/([0-9-a-z-A-Z]+)/$   /controllers/batch.php?view=single&warehouseID=$1&orderID=$2&batchID=$3&type=outbound [nc,qsa]
+RewriteRule ^([0-9-a-z-A-Z]+)/outbound/([0-9-a-z-A-Z]+)/batch/$   /controllers/batch.php?view=new&warehouseID=$1&orderID=$2 [nc,qsa]
+
+RewriteRule ^([0-9-a-z-A-Z]+)/inbound/([0-9-a-z-A-Z]+)/batch/([0-9-a-z-A-Z]+)/arrived/$    /controllers/batch.php?view=updateInbound&warehouseID=$1&orderID=$2&batchID=$3 [nc,qsa]
+RewriteRule ^([0-9-a-z-A-Z]+)/outbound/([0-9-a-z-A-Z]+)/batch/([0-9-a-z-A-Z]+)/departure/$    /controllers/batch.php?view=updateOutbound&warehouseID=$1&orderID=$2&batchID=$3 [nc,qsa]
+
+
+
+RewriteRule ^([0-9-a-z-A-Z]+)/outbound/([0-9-a-z-A-Z]+)/batch/([0-9-a-z-A-Z]+)/details/$   /controllers/batchDetails.php?view=new&warehouseID=$1&orderID=$2&batchID=$3 [nc,qsa]
+RewriteRule ^([0-9-a-z-A-Z]+)/inbound/([0-9-a-z-A-Z]+)/batch/([0-9-a-z-A-Z]+)/details/list/$   /controllers/batchDetails.php?view=all&warehouseID=$1&orderID=$2&batchID=$3&type=inbound [nc,qsa]
+RewriteRule ^([0-9-a-z-A-Z]+)/outbound/([0-9-a-z-A-Z]+)/batch/([0-9-a-z-A-Z]+)/details/list/$   /controllers/batchDetails.php?view=all&warehouseID=$1&orderID=$2&batchID=$3&type=outbound [nc,qsa]
+
+# # av:php5-engine
+AddHandler av-php5 .php
+
+php_value post_max_size 20M
+php_value upload_max_filesize 20M
