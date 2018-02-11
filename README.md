@@ -18,5 +18,9 @@ There aren't particular dependencies, just note that the backend follows the .ht
 
 
 ## Setup
+
+# Step 1
 Edit the database.php file that is in the config folder in order to connect to your database.
+
+# Step 2
 Edit the clientSecret and clientID and the URL to your Auth Server in the index.php of the Authentication folder in order to implement OAuth Authentication with the Bearer Token.
